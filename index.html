@@ -81,14 +81,23 @@
    $('#datetimepicker2').datetimepicker()
   .on('changeDate', function(ev){ 
       var date1 = $('#datetimepicker1').data('datetimepicker');
+      
       var birth = new Date(date1.getDate().toString());
       var date2 = $('#datetimepicker2').data('datetimepicker');
       var d2 = new Date(date2.getDate().toString());
       var diff_years = d2.getFullYear()-birth.getFullYear();
       var diff_months = d2.getMonth()-birth.getMonth();
       var diff_days = d2.getDate()-birth.getDate()-1;
-      $('.result').html('');
-      $('.result').append(diff_years+" years, "+diff_months+" months, and "+diff_days+" days");
+      if(diff_days<0)
+      {
+        $('.result').html('');
+        $('.result').append("Please select your birth date first!");
+      }
+      else
+      {
+        $('.result').html('');
+        $('.result').append(diff_years+" years, "+diff_months+" months, and "+diff_days+" days");
+      }
   });
     </script>
   </body>
