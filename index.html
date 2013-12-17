@@ -86,9 +86,11 @@
       var birth = new Date(date1.getDate().toString());
       var date2 = $('#datetimepicker2').data('datetimepicker');
       var d2 = new Date(date2.getDate().toString());
+      var timeDiff = Math.abs(d2.getTime() - birth.getTime());
+      //var diff_days = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
       var diff_years = d2.getFullYear()-birth.getFullYear();
       var diff_months = d2.getMonth()-birth.getMonth();
-      var diff_days = d2.getDate()-birth.getDate();
+      var diff_days = d2.getDate()-birth.getDate()-1;
       if(diff_years<0)
       {
         $('.result').html('');
@@ -96,6 +98,20 @@
       }
       else
       {
+        if(diff_days<0)
+        {
+          var d = new Date(d2.getFullYear(), d2.getMonth()-2, 0);
+  
+          diff_months -= 1;
+          diff_days += d.getDate();
+        }
+
+        if(diff_months<0)
+        {
+          diff_years -= 1;
+          diff_months += 12;
+        }
+
         $('.result').html('');
         $('.result').append(diff_years+" years, "+diff_months+" months, and "+diff_days+" days");
       }
