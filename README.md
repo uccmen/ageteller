@@ -1,4 +1,4 @@
-ageteller
+ageteller (BETA)
 =========
 
 an app that tells your age in a given year, accurately. 
